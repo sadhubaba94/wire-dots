@@ -1,0 +1,133 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand-red: #e11d2a;
+  --brand-red-hover: #b91020;
+  --brand-dark: #1a1a1a;
+  --brand-border: #ededed;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #ffffff;
+  color: var(--brand-dark);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Reusable component classes ─────────────────────────── */
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-brand-red px-5 py-2.5
+      font-semibold text-white shadow-sm transition-colors duration-200
+      hover:bg-brand-redHover focus:outline-none focus:ring-2 focus:ring-brand-red/40
+      disabled:cursor-not-allowed disabled:opacity-60;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-brand-border
+      bg-white px-5 py-2.5 font-semibold text-brand-dark transition-colors duration-200
+      hover:border-brand-red hover:text-brand-red focus:outline-none focus:ring-2
+      focus:ring-brand-red/30 disabled:cursor-not-allowed disabled:opacity-60;
+  }
+  .input {
+    @apply w-full rounded-xl border border-brand-border bg-white px-4 py-2.5 text-brand-dark
+      placeholder:text-gray-400 transition-colors focus:border-brand-red focus:outline-none
+      focus:ring-2 focus:ring-brand-red/20;
+  }
+  .chip {
+    @apply inline-flex items-center rounded-full border border-brand-border px-3 py-1
+      text-sm font-medium transition-colors;
+  }
+  .chip-active {
+    @apply border-brand-red bg-brand-red text-white;
+  }
+  .chip-idle {
+    @apply bg-white text-brand-dark hover:border-brand-red hover:text-brand-red;
+  }
+}
+
+/* ── Rendered article typography (public detail page) ───── */
+.prose-wiredots {
+  @apply text-[1.075rem] leading-8 text-brand-dark;
+}
+.prose-wiredots h1 {
+  @apply mb-4 mt-8 text-3xl font-extrabold tracking-tight;
+}
+.prose-wiredots h2 {
+  @apply mb-3 mt-8 text-2xl font-bold tracking-tight;
+}
+.prose-wiredots h3 {
+  @apply mb-2 mt-6 text-xl font-bold;
+}
+.prose-wiredots p {
+  @apply my-4;
+}
+.prose-wiredots a {
+  @apply font-medium text-brand-red underline underline-offset-2 hover:text-brand-redHover;
+}
+.prose-wiredots ul {
+  @apply my-4 list-disc space-y-1 pl-6;
+}
+.prose-wiredots ol {
+  @apply my-4 list-decimal space-y-1 pl-6;
+}
+.prose-wiredots blockquote {
+  @apply my-6 border-l-4 border-brand-red bg-red-50/40 py-2 pl-4 pr-3 italic text-gray-700;
+}
+.prose-wiredots img {
+  @apply my-6 w-full rounded-xl border border-brand-border;
+}
+.prose-wiredots pre {
+  @apply my-5 overflow-x-auto rounded-xl bg-brand-dark p-4 text-sm text-white;
+}
+.prose-wiredots code {
+  @apply rounded bg-gray-100 px-1.5 py-0.5 text-[0.9em] text-brand-redHover;
+}
+.prose-wiredots pre code {
+  @apply bg-transparent p-0 text-white;
+}
+.prose-wiredots hr {
+  @apply my-8 border-brand-border;
+}
+
+/* ── TipTap editor content styles (admin) ───────────────── */
+.tiptap {
+  @apply min-h-[320px] px-4 py-3 outline-none;
+}
+.tiptap:focus {
+  @apply outline-none;
+}
+.tiptap p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  @apply pointer-events-none float-left h-0 text-gray-400;
+}
+.tiptap h1 { @apply mb-3 mt-5 text-3xl font-extrabold; }
+.tiptap h2 { @apply mb-2 mt-4 text-2xl font-bold; }
+.tiptap h3 { @apply mb-2 mt-3 text-xl font-bold; }
+.tiptap p { @apply my-2; }
+.tiptap ul { @apply my-2 list-disc pl-6; }
+.tiptap ol { @apply my-2 list-decimal pl-6; }
+.tiptap blockquote { @apply my-3 border-l-4 border-brand-red pl-4 italic text-gray-700; }
+.tiptap a { @apply text-brand-red underline; }
+.tiptap img { @apply my-3 max-w-full rounded-xl border border-brand-border; }
+.tiptap pre { @apply my-3 rounded-xl bg-brand-dark p-3 text-sm text-white; }
+.tiptap code { @apply rounded bg-gray-100 px-1 text-brand-redHover; }
+.tiptap pre code { @apply bg-transparent text-white; }
+
+/* Line clamp helpers */
+.clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
